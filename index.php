@@ -107,7 +107,7 @@
                     echo "<tr>";
                     echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color'] 
                          . "</td><td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td><td>". $pet['availability'] . "</td><td>";
-                    echo "<a href='petInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
+                    echo "<a href='supplierInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
                     echo "</tr>";
                 }
             ?>
