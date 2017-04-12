@@ -50,5 +50,12 @@
                 }
             ?>
             </table>
+            
+            <?php
+            echo "<a href='index.php?'>
+                         <button type=\"button\" class=\"btn btn-default btn-lg\">
+                         <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Continue Shopping
+                         </button></a>";
+            ?>
     </body>
 </html>

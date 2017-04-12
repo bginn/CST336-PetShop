@@ -1,6 +1,11 @@
 <?php
+    session_start();
     include 'includes/dbConn.php';
     $dbConn = getConnection("online_pets");
+    
+    if(!isset($_SESSION['petCart'])){
+        $_SESSION['petCart'] = array();
+    }
 
     function getPetInfo() {
         global $dbConn;
@@ -39,7 +44,7 @@
                 $sql .= " ORDER BY age_months DESC";
         }
         
-        echo $sql;
+        //echo $sql;
          $stmt = $dbConn -> prepare ($sql);
         $stmt -> execute($namedParameters);
         $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,12 +111,24 @@
                 foreach($pets as $pet) {
                     echo "<tr>";
                     echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color'] 
-                         . "</td><td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td><td>". $pet['availability'] . "</td><td>";
-                    echo "<a href='supplierInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
+                         . "</td><td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td><td>". $pet['availability'] . "</td>";
+                    echo "<td><a href='supplierInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
+                    
+                    echo "<td><a href='cart.php?petId=".$pet['pet_id']."'>
+                     <button type=\"button\" class=\"btn\">
+                     Add to Cart
+                     </button></a></td>";       
+                     
                     echo "</tr>";
                 }
             ?>
         </table>
-      
+      <?php
+      echo "<a href='cart.php?'>
+                         <button type=\"button\" class=\"btn btn-default btn-lg\">
+                         <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> View Shopping Cart
+                         </button></a>";
+            
+      ?>
     </body>
 </html>
