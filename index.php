@@ -96,20 +96,22 @@
                 <th>Type</th>
                 <th>Gender</th>
                 <th>Color</th>
-                <th>Age In Months</th>
+                <th>Age</th>
                 <th>Weight</th>
                 <th>Available</th>
+                <th>More Info</th>
             </tr>
             <?php
                 $pets = getPetInfo();
                 foreach($pets as $pet) {
                     echo "<tr>";
                     echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color'] 
-                         . "</td><td>" . $pet['age_months'] . "</td><td>" . $pet['weight_pounds'] . "</td><td>". $pet['availability'] . "</td>";
+                         . "</td><td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td><td>". $pet['availability'] . "</td><td>";
+                    echo "<a href='petInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
                     echo "</tr>";
                 }
             ?>
-        </table?
+        </table>
       
     </body>
 </html>
