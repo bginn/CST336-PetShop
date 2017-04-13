@@ -91,7 +91,12 @@
 
         <h1>More Info For Pet: <?=$_GET['petId']?></h1>
               </div>
-      
+
+
+       <div class="row">
+ <div class="col-6 col-md-4"></div>
+ <div class="col-6 col-md-4">
+
 
         <table>
             <tr>
@@ -113,6 +118,14 @@
                 }
             ?>
             </table>
+          </div>
+
+   <div class="col-6 col-md-4"></div>
+</div>
+
+<div class="row">
+  <div class="col-6 col-md-5"></div>
+  <div class="col-6 col-md-2">
 
             <?php
             echo "<a href='index.php?'>
@@ -120,5 +133,7 @@
                          <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Continue Shopping
                          </button></a>";
             ?>
+          </div>
+          <div class="col-6 col-md-"></div>
     </body>
 </html>
