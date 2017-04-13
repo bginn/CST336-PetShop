@@ -47,6 +47,11 @@
           background-color: #edae3b;
 
         }
+        .img-circle
+        {
+          margin-left: auto;
+          margin-right:auto;
+        }
 
         </style>
 
@@ -64,7 +69,12 @@
               <h1>Shopping Cart</h1>
               </div>
 <!-- ********************************************* -->
-        <table>
+
+<img src="http://th31.st.depositphotos.com/11153276/14392/v/450/depositphotos_143926991-stock-illustration-logo-template-for-pet-shops.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236">
+
+
+<!-- ********************************************* -->
+ <table>
 
             <?php
 
