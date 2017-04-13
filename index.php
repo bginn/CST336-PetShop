@@ -57,7 +57,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Online Pet Store</title>
+
         <title>Online Pet Store</title>
          <!-- *********************************************************************************** -->
         <!-- Latest compiled and minified CSS -->
@@ -108,14 +108,17 @@
 
 
         </style>
-     
+
 
     </head>
     <body>
-        <h1>Online Pet Store</h1>
+      <div class="jumbotron">
+               <h1>Online Pet Store</h1>
+              </div>
 
-        <form>
-            Type:       <select name="type">
+
+        <form id="text">
+            Type:       <select name="type" id="text1">
                             <option value="">All Types</option>
                             <option value="cat">Cat</option>
                             <option value="dog">Dog</option>
@@ -123,7 +126,7 @@
                             <option value="rabbit">Rabbit</option>
                         </select>
 
-            Sex:        <select name="gender">
+            Sex:        <select name="gender" id="text1">
                             <option value="">Both Sexes</option>
                             <option value="M">M</option>
                             <option value="F">F</option>
@@ -132,7 +135,7 @@
                         <input type="checkbox" name="status" id="status"/>
                         <label for="status"> Available </label>
 
-            Sort by:    <select name="sort">
+            Sort by:    <select name="sort" id="text1">
                             <option value="Age">Age</option>
                             <option value="Weight">Weight</option>
                             <option value="Color">Color</option>
@@ -146,8 +149,12 @@
 
 
         </form>
+        <div class="row">
+ <div class="col-6 col-md-3"></div>
+ <div class="col-6 col-md-6">
 
-        <table>
+
+        <table id="table">
             <tr>
                 <th>Type</th>
                 <th>Gender</th>
@@ -174,6 +181,10 @@
                 }
             ?>
         </table>
+      </div>
+      <div class="col-6 col-md-3"></div>
+</div>
+<p class="text-center" >
       <?php
       echo "<a href='cart.php?'>
                          <button type=\"button\" class=\"btn btn-default btn-lg\">
@@ -182,4 +193,5 @@
 
       ?>
     </body>
+  </p>
 </html>
