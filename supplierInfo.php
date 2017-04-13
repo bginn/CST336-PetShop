@@ -87,7 +87,11 @@
 
     </head>
     <body>
+      <div class="jumbotron">
+
         <h1>More Info For Pet: <?=$_GET['petId']?></h1>
+              </div>
+      
 
         <table>
             <tr>
