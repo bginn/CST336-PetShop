@@ -1,20 +1,20 @@
 <?php
     session_start();
-    
+
     include 'includes/dbConn.php';
     $dbConn = getConnection("online_pets");
-    
+
     function getInfo($petID){
         global $dbConn;
-        
+
         $sql = "SELECT * FROM inventory i
 		        JOIN pets p ON p.pet_id = i.pet_id
 		        JOIN supplier s ON s.supp_id = i.supp_id
 		        JOIN breed b ON b.breed_id = p.breed_id
 		        WHERE p.pet_id = :petId";
 		$np[':petId'] = $petID;
-		
-		
+
+
 	//	echo $sql;
         $stmt = $dbConn -> prepare ($sql);
         $stmt -> execute($np);
@@ -27,14 +27,25 @@
 <html>
     <head>
         <title>Shopping Cart</title>
+<!-- *********************************************************************************** -->
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- ***************************-->
+
     </head>
     <body>
         <h1>Shopping Cart</h1>
-       
+
         <table>
-            
+
             <?php
-                
+
                 if(!isset($_SESSION['petCart'][$_GET['petId']]) && isset($_GET['petId']))
                      $_SESSION['petCart'][$_GET['petId']] = $_GET['petId'];
                 $petIds = $_SESSION['petCart'];
@@ -42,18 +53,18 @@
                 $totalPrice = 0;
                 echo "<tr>";
                     echo "<td>Item #</td>";
-                    
+
                     echo "<td> Type </td><td> Gender </td><td> Color </td>";
                     echo "<td> Age(months)</td><td> Weight(lbs)</td>";
                     echo "<td> Breed </td><td> Country</td><td> Price</td>";
                 echo "</tr>";
                 foreach($petIds as $petId) {
-                    
+
                     $pet = getInfo($petId);
                     $pet = $pet[0];
                     echo "<tr>";
                         echo "<td>Item " . $itemCount . "</td>";
-                        
+
                         echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color'] . "</td>";
                         echo "<td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td>";
                         echo "<td>" . $pet['breed'] . "</td><td>" . $pet['country'] . "</td><td>$" . $pet['price'] . "</td>";
@@ -63,17 +74,17 @@
                 }
                 echo "<tr><td>Total Price: $" . $totalPrice . "</td></tr>";
             ?>
-            
+
             </table>
-            
+
             <?php
             echo "<a href='index.php?'>
                          <button type=\"button\" class=\"btn btn-default btn-lg\">
                          <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Continue Shopping
                          </button></a>";
             ?>
-            
-            
-            
+
+
+
     </body>
 </html>
