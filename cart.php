@@ -52,6 +52,15 @@
           margin-left: auto;
           margin-right:auto;
         }
+        body
+        {
+          background-color: black;
+        }
+        #text
+        {
+          color:white;
+          text-align: center;
+        }
 
         </style>
 
@@ -70,11 +79,22 @@
               </div>
 <!-- ********************************************* -->
 
-<img src="http://th31.st.depositphotos.com/11153276/14392/v/450/depositphotos_143926991-stock-illustration-logo-template-for-pet-shops.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236">
-
+<div class="row">
+<div class="col-6 col-md-4"></div>
+<div class="col-6 col-md-4">  <img src="http://th31.st.depositphotos.com/11153276/14392/v/450/depositphotos_143926991-stock-illustration-logo-template-for-pet-shops.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236">
+</div>
+<div class="col-6 col-md-4"></div>
+</div>
 
 <!-- ********************************************* -->
- <table>
+
+<div class="row">
+<div class="col-6 col-md-2"></div>
+<div class="col-6 col-md-8">
+<p class="text-center">
+<table id="text">
+
+
 
             <?php
 
@@ -108,6 +128,8 @@
             ?>
 
             </table>
+          </p>
+           <p class="text-center">
 
             <?php
             echo "<a href='index.php?'>
@@ -116,6 +138,10 @@
                          </button></a>";
             ?>
 
+</p>
+</div>
+<div class="col-6 col-md-2"></div>
+</div>
 
 
     </body>
