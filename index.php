@@ -2,54 +2,54 @@
     session_start();
     include 'includes/dbConn.php';
     $dbConn = getConnection("online_pets");
-    
+
     if(!isset($_SESSION['petCart'])){
         $_SESSION['petCart'] = array();
     }
 
     function getPetInfo() {
         global $dbConn;
-        
+
         $sql = "SELECT * FROM pets p
 		        JOIN breed b ON p.breed_id = b.breed_id
 		        JOIN inventory i ON p.pet_id = i.pet_id WHERE 1";
-		        
+
 		$sql .= " AND type LIKE :type";
 		$namedParameters[':type'] = '%' . $_GET['type'] . '%';
-		
+
 		$sql .= " AND gender LIKE :gender";
 		$namedParameters[':gender'] = '%' . $_GET['gender'] . '%';
-		
+
 		if (isset($_GET['status']) ) { //"status checkbox was checked"
             $sql .= " AND availability = :availability";
-            $namedParameters[':availability'] = 'Y';    
+            $namedParameters[':availability'] = 'Y';
         }
-    
+
         if($_GET['sort'] == 'Age') {
             if(isset($_GET['ascOrDesc']))
                 $sql .= " ORDER BY age_months ASC";
-            else 
+            else
                  $sql .= " ORDER BY age_months DESC";
         }
         else if($_GET['sort'] == 'Weight'){
             if(isset($_GET['ascOrDesc']))
                 $sql .= " ORDER BY weight_pounds ASC";
-            else 
+            else
                 $sql .= " ORDER BY age_months DESC";
         }
         else if($_GET['sort'] == 'Color'){
             if(isset($_GET['ascOrDesc']))
                 $sql .= " ORDER BY color ASC";
-            else 
+            else
                 $sql .= " ORDER BY age_months DESC";
         }
-        
+
         //echo $sql;
          $stmt = $dbConn -> prepare ($sql);
         $stmt -> execute($namedParameters);
         $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        
+
+
         return $records;
     }
 ?>
@@ -58,11 +58,62 @@
 <html>
     <head>
         <title>Online Pet Store</title>
+        <title>Online Pet Store</title>
+         <!-- *********************************************************************************** -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- ***************************-->
+
+
+    <!-- ************************** -->
+        <style>
+        .jumbotron
+        {
+          text-align: center;
+          background-color: #edae3b;
+
+        }
+        .img-circle
+        {
+          margin-left: auto;
+          margin-right:auto;
+        }
+        body
+        {
+            background: black;
+
+
+        }
+        #text
+        {
+            color: white;
+            text-align:center;
+        }
+        #text1
+        {
+            color:#edae3b;
+            text-align:center;
+        }
+        #table
+        {
+            color:white;
+            text-align:center;
+        }
+
+
+        </style>
      
+
     </head>
     <body>
         <h1>Online Pet Store</h1>
-        
+
         <form>
             Type:       <select name="type">
                             <option value="">All Types</option>
@@ -70,17 +121,17 @@
                             <option value="dog">Dog</option>
                             <option value="bird">Bird</option>
                             <option value="rabbit">Rabbit</option>
-                        </select> 
-                        
+                        </select>
+
             Sex:        <select name="gender">
                             <option value="">Both Sexes</option>
                             <option value="M">M</option>
                             <option value="F">F</option>
-                        </select> 
-                        
+                        </select>
+
                         <input type="checkbox" name="status" id="status"/>
                         <label for="status"> Available </label>
-                        
+
             Sort by:    <select name="sort">
                             <option value="Age">Age</option>
                             <option value="Weight">Weight</option>
@@ -88,14 +139,14 @@
                         </select>
                         <input type="checkbox" name="ascOrDesc" id="status"/>
                         <label for="ascOrDesc"> Ascending </label>
-                        
+
                         <br />
                         <input type="submit" name="submit"/>
-                        
-                        
-                    
+
+
+
         </form>
-    
+
         <table>
             <tr>
                 <th>Type</th>
@@ -110,15 +161,15 @@
                 $pets = getPetInfo();
                 foreach($pets as $pet) {
                     echo "<tr>";
-                    echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color'] 
+                    echo "<td>" . $pet['type'] . "</td><td>" . $pet['gender']  . "</td><td>" . $pet['color']
                          . "</td><td>" . $pet['age_months'] . " Months</td><td>" . $pet['weight_pounds'] . " lbs</td><td>". $pet['availability'] . "</td>";
                     echo "<td><a href='supplierInfo.php?petId=" . $pet['pet_id'] . "'>More Info</a></td> ";
-                    
+
                     echo "<td><a href='cart.php?petId=".$pet['pet_id']."'>
                      <button type=\"button\" class=\"btn\">
                      Add to Cart
-                     </button></a></td>";       
-                     
+                     </button></a></td>";
+
                     echo "</tr>";
                 }
             ?>
@@ -128,7 +179,7 @@
                          <button type=\"button\" class=\"btn btn-default btn-lg\">
                          <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> View Shopping Cart
                          </button></a>";
-            
+
       ?>
     </body>
 </html>
