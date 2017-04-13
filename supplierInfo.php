@@ -98,7 +98,7 @@
  <div class="col-6 col-md-4">
 
 
-        <table>
+        <table id="table">
             <tr>
                 <th>Breed</th>
                 <th>Supplier</th>
