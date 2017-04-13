@@ -61,6 +61,16 @@
           color:white;
           text-align: center;
         }
+        table, th, td {
+       border: 1px solid white;
+       }
+       table {
+    width: 100%;
+         }
+
+th {
+   height: 50px;
+}
 
         </style>
 
